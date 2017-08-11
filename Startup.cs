@@ -33,7 +33,7 @@ namespace Vega
         {
             services.AddAutoMapper();
 
-            services.AddDbContext<VegaDbContext>(options=>options.UseSqlServer(Configuration["ConnectionStrings:Home"]));
+            services.AddDbContext<VegaDbContext>(options=>options.UseSqlServer(Configuration["ConnectionStrings:Work"]));
 
             // Add framework services.
             services.AddMvc();

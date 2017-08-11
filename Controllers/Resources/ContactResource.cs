@@ -2,8 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace vega.Controllers.Resources
 {
-    public partial class VehicleResource
-    {
         public class ContactResource
         {
             [Required]
@@ -16,5 +14,4 @@ namespace vega.Controllers.Resources
             [StringLength(255)]
             public string Phone { get; set; }
         }
-    }
 }
