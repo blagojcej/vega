@@ -55,7 +55,7 @@ namespace vega.Controllers
             //context.Vehicles.Add(vehicle);
             repository.Add(vehicle);
             //await context.SaveChangesAsync();
-            unitOfWork.CompleteAsync();
+            await unitOfWork.CompleteAsync();
 
             //It's very tied with EntityFramework
             //vehicle.Model = await context.Models.Include(m => m.Make).SingleOrDefaultAsync(m => m.Id == vehicle.Model.Id);
@@ -114,8 +114,9 @@ namespace vega.Controllers
             vehicle.LastUpdate = DateTime.Now;
 
             //await context.SaveChangesAsync();
-            unitOfWork.CompleteAsync();
+            await unitOfWork.CompleteAsync();
 
+            vehicle=await repository.GetVehicle(vehicle.Id);
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
 
             return Ok(result);
@@ -133,7 +134,7 @@ namespace vega.Controllers
             //context.Remove(vehicle);
             repository.Remove(vehicle);
             //await context.SaveChangesAsync();
-            unitOfWork.CompleteAsync();
+            await unitOfWork.CompleteAsync();
 
             return Ok(id);
         }
