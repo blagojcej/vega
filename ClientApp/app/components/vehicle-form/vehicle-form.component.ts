@@ -17,7 +17,7 @@ export class VehicleFormComponent implements OnInit {
   };
 
   constructor(private vehicleService: VehicleService,
-              private toastySerice: ToastyService) { }
+              private toastyService: ToastyService) { }
 
   ngOnInit() {
     this.vehicleService.getMakes()
@@ -50,17 +50,18 @@ export class VehicleFormComponent implements OnInit {
 
   submit(){
     this.vehicleService.create(this.vehicle)
-    .subscribe(
-      x => console.log(x),
-      err => {
-                this.toastySerice.error({
-                  title: 'Error',
-                  msg: 'An unexpected error happened,',
-                  theme: 'bootstrap',
-                  showClose: true,
-                  timeout: 5000
-                });
-      }
-    );
+    .subscribe(x => console.log(x));
+    // .subscribe(
+    //   x => console.log(x),
+    //   err => {
+    //             this.toastySerice.error({
+    //               title: 'Error',
+    //               msg: 'An unexpected error happened,',
+    //               theme: 'bootstrap',
+    //               showClose: true,
+    //               timeout: 5000
+    //             });
+    //   }
+    // );
   }
 }
