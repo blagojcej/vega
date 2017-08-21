@@ -10,7 +10,7 @@ namespace vega.Mapping
     public class MappingProfile : Profile
     {
         public MappingProfile()
-        {
+        {            
             //Domain to API Resources
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
@@ -43,7 +43,7 @@ namespace vega.Mapping
                 //     }
                 // }
 
-                var removedFeatures = v.Features.Where(f => !vr.Features.Contains(f.FeatureId));
+                var removedFeatures = v.Features.Where(f => !vr.Features.Contains(f.FeatureId)).ToList();
                 foreach (var f in removedFeatures)
                 {
                     v.Features.Remove(f);
