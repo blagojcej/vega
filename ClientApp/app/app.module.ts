@@ -12,28 +12,31 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
-import {ToastyModule} from 'ng2-toasty';
+import { ToastyModule } from 'ng2-toasty';
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 
 Raven.config('https://dcdd483a1fbc43d78a9c3fcfded24cb4@sentry.io/205526').install();
 
 @NgModule({
-    bootstrap: [ AppComponent ],
-    declarations: [        
+    bootstrap: [AppComponent],
+    declarations: [
         AppComponent,
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        VehicleFormComponent
+        VehicleFormComponent,
+        VehicleListComponent
     ],
     imports: [
         FormsModule,
         ToastyModule.forRoot(),
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            {path: 'vehicles/new', component: VehicleFormComponent},
-            {path: 'vehicles/:id', component: VehicleFormComponent},
+            { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
+            { path: 'vehicles/new', component: VehicleFormComponent },
+            { path: 'vehicles/:id', component: VehicleFormComponent },
+            { path: 'vehicles', component: VehicleListComponent },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
@@ -41,7 +44,7 @@ Raven.config('https://dcdd483a1fbc43d78a9c3fcfded24cb4@sentry.io/205526').instal
         ])
     ],
     providers: [
-        {provide: ErrorHandler, useClass: AppErrorHandler},
+        { provide: ErrorHandler, useClass: AppErrorHandler },
         VehicleService,
     ]
 })
